@@ -37,10 +37,12 @@ oldhealth = currhealth
 --------------------  End possible defunct code
 -- Array = [4, 7, 6, 5, 0, 0, 0, 0] -- Example array
 
-q = 0
+q = 0                                           -- Minor edit on this block
 for x in array
-	if x > 0.15 * totalaverage then
+	if x > 0.15 * totalaverage and x > 0 then
 		++q
+	end
+end
 average = sumarray / q
 
 -- Testing Branch Push
