@@ -35,10 +35,12 @@ else
 rollaverage = sum(array) / y
 oldhealth = currhealth
 --------------------  End possible defunct code
--- Array = [4, 7, 6, 5, 0, 0, 0, 0] -- Example array
+-- Array = [4, 7, 6, 5, 0, 0, 0, 0] -- Example array 
 
 q = 0
 for x in array
 	if x > 0.15 * totalaverage then
 		++q
 average = sumarray / q
+
+-- Testing Branch Push
