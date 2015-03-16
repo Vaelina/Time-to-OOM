@@ -1,28 +1,28 @@
 currhealth = UnitHealth("target")
 
-if oldhealth == nil							-- If no oldhealth value yet
-     oldhealth = UnitHealthMax(“target”)	-- Sets oldhealth equal to max health to prevent looping issue
-change = oldhealth - currhealth				-- Sets change equal to change in health
-oldhealth = currhealth						-- Assigns old health to current health for next cycle
+if oldhealth == nil		-- If no oldhealth value yet
+     oldhealth = UnitHealthMax(“target”)		-- Sets oldhealth equal to max health to prevent looping issue
+change = oldhealth - currhealth			-- Sets change equal to change in health
+oldhealth = currhealth		-- Assigns old health to current health for next cycle
 --------------------
 do
-  local t = {}                   -- Initialized array t
-  function f(a, b, ...)          -- for function-array, function equals variables of array? dont fully understand this line
-	if b then                    -- If array value 2, represented as b, is not nil(has a value)
-		return f(a+b, ...)       -- Return sum of array
-	else                         -- Else, return a (checks for single-value-array)
+  local t = {}		-- Initialized array t
+  function f(a, b, ...)		-- for function-array, function equals variables of array? dont fully understand this line
+	if b then		-- If array value 2, represented as b, is not nil(has a value)
+		return f(a+b, ...)		-- Return sum of array
+	else		-- Else, return a (checks for single-value-array)
 		return a 
 	end 
   end
   function average(n)
-    if #t == 12                  -- If array is full (at max value of 12 stored values)
-		then table.remove(t, 1)  -- Remove value of t{1}, shifts all array values above 1 down 1 space to remove gap
-	end                                  -- is this necessary? wouldnt it be overwritten anyway next cycle?
-    t[#t + 1] = n				 -- t[length of t + 1] set to n where n is the value of function average(n)
-    return f(unpack(t)) / #t     -- a, b = unpack[10,20,30] would return a=10, b=20, but f(unpack(a) where a= {10, 20} returns f(10, 20)
-  end      							--shouldnt it be f(unpack(t) /#t)? maybe not, still not following f() functions perfectly
+    if #t == 12		-- If array is full (at max value of 12 stored values)
+		then table.remove(t, 1)		-- Remove value of t{1}, shifts all array values above 1 down 1 space to remove gap
+	end		-- is this necessary? wouldnt it be overwritten anyway next cycle?
+    t[#t + 1] = n		-- t[length of t + 1] set to n where n is the value of function average(n)
+    return f(unpack(t)) / #t		-- a, b = unpack[10,20,30] would return a=10, b=20, but f(unpack(a) where a= {10, 20} returns f(10, 20)
+  end		--shouldnt it be f(unpack(t) /#t)? maybe not, still not following f() functions perfectly
 end
-for v=1,12 do print(average(v)) end  --for array values 1 through 12, print the average of the array (needs to be changed from print to return maybe?)
+for v=1,12 do print(average(v)) end		--for array values 1 through 12, print the average of the array (needs to be changed from print to return maybe?)
 
 --------------------  Following may be defunct code, replaced by above and below sections
 array1 = change -- is the table.remove(t, 1) this? if not, how do we shift array value? or is that the t[#t + 1] = n line?
