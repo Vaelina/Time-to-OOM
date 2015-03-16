@@ -1,6 +1,6 @@
 currhealth = UnitHealth("target")
 
-if oldhealth = nil
+if oldhealth == nil
      oldhealth = UnitHealthMax(“target”)
 change = oldhealth - currhealth
 oldhealth = currhealth
