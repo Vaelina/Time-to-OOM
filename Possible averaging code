@@ -1,10 +1,20 @@
 do
-  local t = {}
-  function f(a, b, ...) if b then return f(a+b, ...) else return a end end
-  function average(n)
-    if #t == 10 then table.remove(t, 1) end
-    t[#t + 1] = n
-    return f(unpack(t)) / #t
+  local t = {}						-- Initializes array_t
+  function f(a, b, ...) 			-- Function f placeholds array variables
+	if b 							-- If array_t_location_2 is not nil
+		then return f(a+b, ...) 	-- Return sum of array_f variables
+	else 
+	return a 						-- Else, return array_f_location_1_value
+  end 
+end
+  function average(n)				-- Initializes average(n) function
+	if #t == 10 					-- If array_size_t is equal to static arraysize
+		then table.remove(t, 1) 	-- Remove array_location_1_value, shift remaining array_t_values down 1 location
+	end
+    t[#t + 1] = n					-- array_t[size_of_array_t + 1] is set equal to sum to be averaged?
+    return f(unpack(t)) / #t		-- return function of summed_array_t / array_t_size
   end
 end
-for v=1,30 do print(average(v)) end
+for v=1,30							-- loop v=1 through v=30			where does v get sent array_t values?
+	do print(average(v))			-- print average of v values 1 through 30
+end
