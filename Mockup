@@ -1,9 +1,9 @@
 currhealth = UnitHealth("target")
 
-if oldhealth == nil
-     oldhealth = UnitHealthMax(“target”)
-change = oldhealth - currhealth
-oldhealth = currhealth
+if oldhealth == nil							-- If no oldhealth value yet
+     oldhealth = UnitHealthMax(“target”)	-- Sets oldhealth equal to max health to prevent looping issue
+change = oldhealth - currhealth				-- Sets change equal to change in health
+oldhealth = currhealth						-- Assigns old health to current health for next cycle
 --------------------
 do
   local t = {}                   -- Initialized array t
