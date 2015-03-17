@@ -32,15 +32,14 @@ if oldtime < currtime - 5				-- Rough time check to only run once every 5s
 				PSEUDO - Rolling Average Section
 				PSEUDO - PercFail = Number of array values below 15% of fight average
 				
-				z = 1
+				z = 1							-- block to get AverageDivisor
 				AverageDivisor = 0
 				while z <= #t do
 					ArrayValue = t[z]
-					if ArrayValue >= .15 * TotalAverage then do
+					if ArrayValue >= .15 * TotalAverage then
 						AverageDivisor = AverageDivisor + 1
 					end
 					z = z + 1
-				end
 				end
 				
 				--AverageDivisor = #t - PercFail			--handled in percentage loop
