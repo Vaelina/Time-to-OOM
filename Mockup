@@ -1,6 +1,5 @@
 currhealth = UnitHealth("target")
 currtime = GetTime()
-TotalCounter = 1
 
 if oldtime == nil  						-- If no oldtime value yet
 	oldtime = GetTime()	- 5				-- Sets oldtime equal to current time to prevent arithmetic logic
@@ -10,8 +9,9 @@ if oldhealth == nil						-- If no oldhealth value yet
      oldhealth = UnitHealth(“target”)	-- Sets oldhealth equal to current health to prevent arithmetic issue
 end
 
-if TotalAverage == nil					-- If no TotalAverage value yet
+if TotalAverage == nil or currhealth == UnitMaxHealth("boss1")		-- If no TotalAverage value yet
      TotalAverage = 0					-- Sets TotalAverage to non-nil zero
+     TotalCounter = 1
 end
 
 
