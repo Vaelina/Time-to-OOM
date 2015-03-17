@@ -2,54 +2,55 @@ currhealth = UnitHealth("target")
 currtime = GetTime()
 
 if oldtime == nil  						-- If no oldtime value yet
-	oldtime = GetTime()					-- Sets oldtime equal to current time to prevent arithmetic logic
+	oldtime = GetTime()	- 5				-- Sets oldtime equal to current time to prevent arithmetic logic
 end
 
 if oldhealth == nil						-- If no oldhealth value yet
      oldhealth = UnitHealth(“target”)	-- Sets oldhealth equal to current health to prevent arithmetic issue
 end
 
-if oldtime < currtime - 5			-- Rough time check to only run once every 5s
-	oldtime = oldtime + 5							-- Brings oldtime up to date for next check
-	change = oldhealth - currhealth					-- Sets change equal to change in health
-	oldhealth = currhealth							-- Assigns old health to current health for next cycle
+if oldtime < currtime - 5				-- Rough time check to only run once every 5s
+	oldtime = oldtime + 5				-- Brings oldtime up to date for next check
+	change = oldhealth - currhealth		-- Sets change equal to change in health
+	oldhealth = currhealth				-- Assigns old health to current health for next cycle
 --------------------
 	do
-	local t = {}					-- Initialized array t
-	function f(a, b, ...)			-- for function-array, function equals variables of array? dont fully understand this line   - what does function f need to be replaced with, and what stores the value returned
-		if b then					-- If array value 2, represented as b, is not nil(has a value)
-			return f(a+b, ...)		-- Return sum of array
-		else						-- Else, return a (checks for single-value-array)
-			return a 
+		local t = {}					-- Initialized array t
+		function f(a, b, ...)			-- for function-array, function equals variables of array? dont fully understand this line   - what does function f need to be replaced with, and what stores the value returned
+			if b then					-- If array value 2, represented as b, is not nil(has a value)
+				return f(a+b, ...)		-- Return sum of array
+			else						-- Else, return a (checks for single-value-array)
+				return a 
+			end
+			function average(n)								--incorporate bottom block for average calculation               -what does n need to be replaced with
+				if #t == 12									-- If array is full (at max value of 12 stored values), must be nested in 5s timer check
+					then table.remove(t, 12)				-- Remove value of t{1}, shifts all array values above 1 down 1 space to remove gap
+				end											-- is this necessary? wouldnt it be overwritten anyway next cycle?
+				then table.insert(t, 1, change)				-- Adds new value to back of list, as held in variable change
+				t[#t + 1] = n								-- t[length of t + 1] set to n where n is the value of function average(n)
+				return f(unpack(t)) / #t					-- a, b = unpack[10,20,30] would return a=10, b=20, but f(unpack(a) where a= {10, 20} returns f(10, 20)
+			end												--shouldnt it be f(unpack(t) /#t)? maybe not, still not following f() functions perfectly
+  
 		end
 	end
-    
-	function average(n)					--incorporate bottom block for average calculation
-		if #t == 12						-- If array is full (at max value of 12 stored values), must be nested in 5s timer check
-			then table.remove(t, 1)		-- Remove value of t{1}, shifts all array values above 1 down 1 space to remove gap
-			then table.add(t, 12)		-- Adds new value to back of list, as held in variable change
-		end								-- is this necessary? wouldnt it be overwritten anyway next cycle?
-		t[#t + 1] = n					-- t[length of t + 1] set to n where n is the value of function average(n)
-		return f(unpack(t)) / #t		-- a, b = unpack[10,20,30] would return a=10, b=20, but f(unpack(a) where a= {10, 20} returns f(10, 20)
-	end									--shouldnt it be f(unpack(t) /#t)? maybe not, still not following f() functions perfectly
-  
-  end
-end
-for v=1,12 								--for array values 1 through 12
-	do print(average(v)) 				--print the average of the array (needs to be changed from print to return maybe?)
-end		
+	for v=1,12 								--for array values 1 through 12
+		do print(average(v)) 				--print the average of the array (needs to be changed from print to return maybe?)
+	end	
+end	
 
---------------------  Following may be defunct code, replaced by above and below sections
-array1 = change -- is the table.remove(t, 1) this? if not, how do we shift array value? or is that the t[#t + 1] = n line?
+--------------------  Following code is for overall fight dps
+--array1 = change -- is the table.remove(t, 1) this? if not, how do we shift array value? or is that the t[#t + 1] = n line?
 totalaverage = ((totalaverage * x) + change) / (x+1)
 ++x
-if change > .15(totalaverage)
-    if y<12, y=y+1    
-else 
-   if y>0,  y=y-1   -- where z is iterations where 85% check fails
-rollaverage = sum(array) / y
-oldhealth = currhealth
---------------------  End possible defunct code
+-------------------   End overall fight dps code
+-------------------   Begin defunct code
+--if change > .15(totalaverage)
+--    if y<12, y=y+1    
+--else 
+--   if y>0,  y=y-1   -- where z is iterations where 85% check fails
+--rollaverage = sum(array) / y
+--oldhealth = currhealth
+--------------------  End defunct code
 -- Array = [4, 7, 6, 5, 0, 0, 0, 0] -- Example array
 
 q = 0                                           -- Minor edit on this block
