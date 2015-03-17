@@ -27,7 +27,14 @@ if oldtime < currtime - 5				-- Rough time check to only run once every 5s
 					then table.remove(t, 12)				-- Remove value of t{12}
 				end											-- is this necessary? wouldnt it be overwritten anyway next cycle?
 				table.insert(t, 1, change)					-- Adds new value to front of list, as held in variable change, moved other values down one
-		--		t[#t + 1] = n								-- t[length of t + 1] set to n where n is the value of function average(n)
+				
+				for i >= #t
+					ArrayValue = t(i)
+					ArrayValue = ArraySum + ArrayValue
+					i = i + 1
+					
+				
+		--[[		t[#t + 1] = n							-- t[length of t + 1] set to n where n is the value of function average(n)
 				average = f(unpack(t, i))					-- a, b = unpack[10,20,30] would return a=10, b=20, but f(unpack(a) where a= {10, 20} returns f(10, 20)     / #t
 					i = i or 1
 					if t[i] ~= nil then
@@ -35,7 +42,8 @@ if oldtime < currtime - 5				-- Rough time check to only run once every 5s
 					end
 				return average
 			end												--shouldnt it be f(unpack(t) /#t)? maybe not, still not following f() functions perfectly
-  
+		--]]
+			end
 		end
 	end
 	for v=1,12 								--for array values 1 through 12
