@@ -72,9 +72,9 @@ if oldtime < currtime - 5 do			-- Rough time check to only run once every 5s
 			end
 		end
 	end
-	for v=1,12 								--for array values 1 through 12
-		do print(average(v)) 				--print the average of the array (needs to be changed from print to return maybe?)
-	end	
+	--for v=1,12 								--for array values 1 through 12
+		--do print(average(v)) 				--print the average of the array (needs to be changed from print to return maybe?)
+	
 end	
 
 --------------------  Following code is for overall fight dps
