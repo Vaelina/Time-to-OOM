@@ -1,0 +1,9 @@
+if not time = GetTime()
+end
+
+currtime = GetTime()
+
+if currtime >= time + 5
+  time = currtime
+  do stuff
+end
