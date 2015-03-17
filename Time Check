@@ -1,4 +1,4 @@
-if not time = GetTime()
+--[[if not time = GetTime()
 end
 
 currtime = GetTime()
@@ -7,3 +7,108 @@ if currtime >= time + 5
   time = time + 5
   do stuff
 end
+
+--]]
+--Demo Page
+
+function()
+    local currhealth = UnitHealth("target")
+    local currtime = GetTime()
+    local oldtime
+    local oldhealth
+    local TotalAverage
+    
+    if oldtime == nil then
+        oldtime = GetTime()    - 5
+    end
+    
+    if oldhealth == nil    then
+        oldhealth = UnitHealth("target")
+    end
+    
+    if TotalAverage == nil or currhealth == UnitMaxHealth("boss1") then
+        TotalAverage = 0
+        TotalCounter = 1
+    end
+    
+    
+    if oldtime < currtime - 5 then do
+            oldtime = oldtime + 5
+            change = oldhealth - currhealth
+            oldhealth = currhealth
+            
+            local t = {}
+            
+            if #t == 12
+            then table.remove(t, 12)
+            end
+            table.insert(t, 1, change)
+            
+            TotalAverage = ((TotalAverage * TotalCounter) + change) / (TotalCounter+1)
+            TotalCounter = TotalCounter + 1
+            
+            z = 1        
+            AverageDivisor = 0
+            while z <= #t do
+                ArrayValue = t[z]
+                if ArrayValue >= .15 * TotalAverage then
+                    AverageDivisor = AverageDivisor + 1
+                end
+                z = z + 1
+            end
+            
+            ArraySum = 0
+            i = 1
+            while i <= #t do
+                ArrayValue = t[i]
+                ArraySum = ArraySum + ArrayValue
+                i = i + 1
+            end
+            ArrayAverage = ArraySum / AverageDivisor
+            
+            TTK = (currhealth / ArrayAverage) / 5 
+            
+            if oldhealth>=currhealth then
+                text = " - - "
+            else
+                if (time <= 60) then
+                    text = format("%0.2d",TTK)           
+                elseif (time > 60) then
+                    text = format("%d:%0.2d",TTK / 60, time % 60)
+                end
+                return text
+            end
+        end
+    end
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
