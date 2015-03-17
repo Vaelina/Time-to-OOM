@@ -28,12 +28,15 @@ if oldtime < currtime - 5				-- Rough time check to only run once every 5s
 				end											-- is this necessary? wouldnt it be overwritten anyway next cycle?
 				table.insert(t, 1, change)					-- Adds new value to front of list, as held in variable change, moved other values down one
 				
-				for i >= #t
-					ArrayValue = t(i)
-					ArrayValue = ArraySum + ArrayValue
-					i = i + 1
-					
-				
+				ArraySum = 0
+				i = 1										-- Resets and declares i (iteration counter) every loop
+				while i <= #t do							-- While i is less than or equal to array size
+					ArrayValue = t[i]						-- Sets ArrayValue equal to current iterative array location
+					ArraySum = ArraySum + ArrayValue		-- Sums array location values
+					i = i + 1								-- Increments i
+					return ArrayAverage = ArraySum / #t		-- Divides ArraySum by Array Size to find ArrayAverage value
+				end
+								
 		--[[		t[#t + 1] = n							-- t[length of t + 1] set to n where n is the value of function average(n)
 				average = f(unpack(t, i))					-- a, b = unpack[10,20,30] would return a=10, b=20, but f(unpack(a) where a= {10, 20} returns f(10, 20)     / #t
 					i = i or 1
