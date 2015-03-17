@@ -1,5 +1,6 @@
 currhealth = UnitHealth("target")
 currtime = GetTime()
+TotalCounter = 1
 
 if oldtime == nil  						-- If no oldtime value yet
 	oldtime = GetTime()	- 5				-- Sets oldtime equal to current time to prevent arithmetic logic
@@ -8,6 +9,11 @@ end
 if oldhealth == nil						-- If no oldhealth value yet
      oldhealth = UnitHealth(“target”)	-- Sets oldhealth equal to current health to prevent arithmetic issue
 end
+
+if TotalAverage == nil					-- If no TotalAverage value yet
+     TotalAverage = 0					-- Sets TotalAverage to non-nil zero
+end
+
 
 if oldtime < currtime - 5				-- Rough time check to only run once every 5s
 	oldtime = oldtime + 5				-- Brings oldtime up to date for next check
@@ -31,7 +37,11 @@ if oldtime < currtime - 5				-- Rough time check to only run once every 5s
 				PSEUDO - Fight Average Section
 				PSEUDO - Rolling Average Section
 				
-				z = 1							-- block to get AverageDivisor
+				
+				TotalAverage = ((TotalAverage * TotalCounter) + change) / (TotalCounter+1)
+				TotalCounter = TotalCounter + 1
+				
+				z = 1										-- block to get AverageDivisor
 				AverageDivisor = 0
 				while z <= #t do
 					ArrayValue = t[z]
