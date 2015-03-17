@@ -9,18 +9,18 @@ if oldhealth == nil						-- If no oldhealth value yet
      oldhealth = UnitHealth(“target”)	-- Sets oldhealth equal to current health to prevent arithmetic issue
 end
 
-if TotalAverage == nil or currhealth == UnitMaxHealth("boss1")		-- If no TotalAverage value yet
+if TotalAverage == nil or currhealth == UnitMaxHealth("boss1")		-- If no TotalAverage value yet, or if boss at max health
      TotalAverage = 0					-- Sets TotalAverage to non-nil zero
-     TotalCounter = 1
+     TotalCounter = 1					-- Sets Counter for total fight tracking
 end
 
 
-if oldtime < currtime - 5				-- Rough time check to only run once every 5s
+if oldtime < currtime - 5 do			-- Rough time check to only run once every 5s
 	oldtime = oldtime + 5				-- Brings oldtime up to date for next check
 	change = oldhealth - currhealth		-- Sets change equal to change in health
 	oldhealth = currhealth				-- Assigns old health to current health for next cycle
 --------------------
-	do
+	
 		local t = {}					-- Initialized array t
 		function f(a, b, ...)			-- for function-array, function equals variables of array? dont fully understand this line   - what does function f need to be replaced with, and what stores the value returned
 			if b then					-- If array value 2, represented as b, is not nil(has a value)
@@ -34,21 +34,18 @@ if oldtime < currtime - 5				-- Rough time check to only run once every 5s
 				end											-- is this necessary? wouldnt it be overwritten anyway next cycle?
 				table.insert(t, 1, change)					-- Adds new value to front of list, as held in variable change, moved other values down one
 				
-				PSEUDO - Fight Average Section
-				PSEUDO - Rolling Average Section
+				TotalAverage = ((TotalAverage * TotalCounter) + change) / (TotalCounter+1)		-- Finds Average change per 5s loop over entire fight duration
+				TotalCounter = TotalCounter + 1													-- Increments averaging divisor
 				
-				
-				TotalAverage = ((TotalAverage * TotalCounter) + change) / (TotalCounter+1)
-				TotalCounter = TotalCounter + 1
-				
-				z = 1										-- block to get AverageDivisor
-				AverageDivisor = 0
-				while z <= #t do
-					ArrayValue = t[z]
-					if ArrayValue >= .15 * TotalAverage then
-						AverageDivisor = AverageDivisor + 1
+					-- block to get AverageDivisor
+				z = 1												-- Initializes array incrementor z			
+				AverageDivisor = 0									-- Zeros out AverageDivisor
+				while z <= #t do									-- While z is less than array size
+					ArrayValue = t[z]								-- ArrayValue equals value in array at z location
+					if ArrayValue >= .15 * TotalAverage then		-- If ArrayValue is less than 15% of TotalAverage
+						AverageDivisor = AverageDivisor + 1			-- Increment ArrayDivisor counter
 					end
-					z = z + 1
+					z = z + 1										-- Increment z
 				end
 				
 				--AverageDivisor = #t - PercFail			--handled in percentage loop
@@ -82,8 +79,8 @@ end
 
 --------------------  Following code is for overall fight dps
 --array1 = change -- is the table.remove(t, 1) this? if not, how do we shift array value? or is that the t[#t + 1] = n line?
-totalaverage = ((totalaverage * x) + change) / (x+1)
-++x
+--totalaverage = ((totalaverage * x) + change) / (x+1)
+--++x
 -------------------   End overall fight dps code
 -------------------   Begin defunct code
 --if change > .15(totalaverage)
@@ -94,7 +91,7 @@ totalaverage = ((totalaverage * x) + change) / (x+1)
 --oldhealth = currhealth
 --------------------  End defunct code
 -- Array = [4, 7, 6, 5, 0, 0, 0, 0] -- Example array
-
+--[[
 q = 0                                           -- Minor edit on this block
 for x in array
 	if x > 0.15 * totalaverage and x > 0 then
@@ -104,3 +101,4 @@ end
 average = sumarray / q
 
 -- Testing Branch Push
+--]]
