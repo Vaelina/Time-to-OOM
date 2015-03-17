@@ -27,7 +27,8 @@ function()
     end
     
     
-    if oldtime < currtime - 5 then do
+    if oldtime <= (currtime - 5) then do
+            
             oldtime = oldtime + 5
             change = oldhealth - currhealth
             oldhealth = currhealth
@@ -62,10 +63,39 @@ function()
             ArrayAverage = ArraySum / AverageDivisor
             
             TTK = (currhealth / ArrayAverage) / 5 
-            text = 5 --TTK
-            print(text)
-            
+            text = TTK
         end
     end
     return text
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
