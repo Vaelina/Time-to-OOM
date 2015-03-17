@@ -1,21 +1,21 @@
 currhealth = UnitHealth("target")
 currtime = GetTime()
 
-if oldtime == nil  						-- If no oldtime value yet
+if oldtime == nil then 						-- If no oldtime value yet
 	oldtime = GetTime()	- 5				-- Sets oldtime equal to current time to prevent arithmetic logic
 end
 
-if oldhealth == nil						-- If no oldhealth value yet
+if oldhealth == nil	then					-- If no oldhealth value yet
      oldhealth = UnitHealth(“target”)	-- Sets oldhealth equal to current health to prevent arithmetic issue
 end
 
-if TotalAverage == nil or currhealth == UnitMaxHealth("boss1")		-- If no TotalAverage value yet, or if boss at max health
+if TotalAverage == nil or currhealth == UnitMaxHealth("boss1") then		-- If no TotalAverage value yet, or if boss at max health
      TotalAverage = 0					-- Sets TotalAverage to non-nil zero
      TotalCounter = 1					-- Sets Counter for total fight tracking
 end
 
 
-if oldtime < currtime - 5 do			-- Rough time check to only run once every 5s
+if oldtime < currtime - 5 then do		-- Rough time check to only run once every 5s
 	oldtime = oldtime + 5				-- Brings oldtime up to date for next check
 	change = oldhealth - currhealth		-- Sets change equal to change in health
 	oldhealth = currhealth				-- Assigns old health to current health for next cycle
