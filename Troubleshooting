@@ -1,17 +1,7 @@
 function()
     currhealth = UnitHealth("target")
     currtime = GetTime()
-    local oldtime
-    local oldhealth
-    local TotalAverage
-    local z
-    local i
-    local AverageDivisor
-    local ArrayAverage
-    local ArrayValue
-    local ArraySum
-    local TotalCounter
-    local text
+    
     
     if oldtime == nil then
         oldtime = GetTime() - 5
@@ -21,7 +11,7 @@ function()
         oldhealth = UnitHealth("target")
     end
     
-    if TotalAverage == nil or currhealth == UnitMaxHealth("boss1") then
+    if TotalAverage == nil then --or currhealth == UnitMaxHealth("boss1") then
         TotalAverage = 0
         TotalCounter = 0
     end
@@ -68,34 +58,3 @@ function()
     end
     return text
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
