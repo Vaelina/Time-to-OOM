@@ -4,6 +4,6 @@ end
 currtime = GetTime()
 
 if currtime >= time + 5
-  time = currtime
+  time += 5
   do stuff
 end
