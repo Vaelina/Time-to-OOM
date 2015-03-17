@@ -30,7 +30,6 @@ if oldtime < currtime - 5				-- Rough time check to only run once every 5s
 				
 				PSEUDO - Fight Average Section
 				PSEUDO - Rolling Average Section
-				PSEUDO - PercFail = Number of array values below 15% of fight average
 				
 				z = 1							-- block to get AverageDivisor
 				AverageDivisor = 0
