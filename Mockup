@@ -10,6 +10,7 @@ if oldhealth == nil						-- If no oldhealth value yet
 end
 
 if oldtime < currtime - 5			-- Rough time check to only run once every 5s
+	oldtime = oldtime + 5							-- Brings oldtime up to date for next check
 	change = oldhealth - currhealth					-- Sets change equal to change in health
 	oldhealth = currhealth							-- Assigns old health to current health for next cycle
 --------------------
@@ -33,9 +34,10 @@ if oldtime < currtime - 5			-- Rough time check to only run once every 5s
 	end									--shouldnt it be f(unpack(t) /#t)? maybe not, still not following f() functions perfectly
   
   end
-  oldtime = oldtime + 5					-- Brings oldtime up to date for next check
 end
-for v=1,12 do print(average(v)) end		--for array values 1 through 12, print the average of the array (needs to be changed from print to return maybe?)
+for v=1,12 								--for array values 1 through 12
+	do print(average(v)) 				--print the average of the array (needs to be changed from print to return maybe?)
+end		
 
 --------------------  Following may be defunct code, replaced by above and below sections
 array1 = change -- is the table.remove(t, 1) this? if not, how do we shift array value? or is that the t[#t + 1] = n line?
