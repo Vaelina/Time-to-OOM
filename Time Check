@@ -17,6 +17,13 @@ function()
     local oldtime
     local oldhealth
     local TotalAverage
+	local z
+	local i
+	local AverageDivisor
+	local ArrayAverage
+	local ArrayValue
+	local ArraySum
+	local TotalCounter
     
     if oldtime == nil then
         oldtime = GetTime()    - 5
@@ -28,7 +35,7 @@ function()
     
     if TotalAverage == nil or currhealth == UnitMaxHealth("boss1") then
         TotalAverage = 0
-        TotalCounter = 1
+        TotalCounter = 0
     end
     
     
@@ -67,8 +74,9 @@ function()
             ArrayAverage = ArraySum / AverageDivisor
             
             TTK = (currhealth / ArrayAverage) / 5 
+            text = TTK
             
-            if oldhealth>=currhealth then
+            --[[if (oldhealth + change)>=currhealth then
                 text = " - - "
             else
                 if (time <= 60) then
@@ -76,8 +84,8 @@ function()
                 elseif (time > 60) then
                     text = format("%d:%0.2d",TTK / 60, time % 60)
                 end
-                return text
-            end
+            end--]]
+			return text
         end
     end
 end
