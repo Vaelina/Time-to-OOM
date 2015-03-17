@@ -32,7 +32,7 @@ if oldtime < currtime - 5				-- Rough time check to only run once every 5s
 				PSEUDO - Rolling Average Section
 				PSEUDO - PercFail = Number of array values below 15% of fight average
 				
-				AverageDivisor = #t - PercFail
+				--AverageDivisor = #t - PercFail			--handled in percentage loop
 				
 				ArraySum = 0
 				i = 1										-- Resets and declares i (iteration counter) every loop
