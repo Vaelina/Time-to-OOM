@@ -61,7 +61,7 @@ if oldtime < currtime - 5 then do		-- Rough time check to only run once every 5s
 				ArrayAverage = ArraySum / AverageDivisor
 
 				TTK = (currhealth / ArrayAverage) / 5 
-				print("Target TTK - " TTK)
+				print("Target TTK - " .. TTK)
 				
 		--[[		t[#t + 1] = n							-- t[length of t + 1] set to n where n is the value of function average(n)
 				average = f(unpack(t, i))					-- a, b = unpack[10,20,30] would return a=10, b=20, but f(unpack(a) where a= {10, 20} returns f(10, 20)     / #t
